@@ -1,0 +1,14 @@
+// --- 🔴 CÓDIGO VULNERABLE: El desarrollador reimplementa con concatenación ---
+    
+    messageDiv.className = 'result-message vulnerable';
+    
+    if (productName.includes("' --")) {
+        // ATAQUE EXITOSO (Tampering)
+        inventory['Mouse'] = inventory['Mouse'] - 5;
+        inventory['Laptop'] = inventory['Laptop'] - 5;
+        inventory['Router'] = inventory['Router'] - 5;
+        
+        messageDiv.innerHTML = `🔴 **¡FALLO EN EL DISEÑO!** La inyección modificó el stock.<br>Consulta Insegura: <code>UPDATE inventario SET stock = stock - 5 WHERE producto = \'${productName}\'</code>`;
+    } else {
+        messageDiv.textContent = `Buscando: ${productName}. MODO ACTUAL: VULNERABLE.`;
+    }
